@@ -1,0 +1,30 @@
+{
+  "name": "seiryuu",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "ssh://git@github.com/MaxMEllon/seiryuu.git",
+  "author": "MaxMEllon <maxmellon1994@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev:server": "webpack-dev-server --config ./webpack.config.dev.js --progress --watch",
+    "dev:electron": "wait-on http://localhost:3000 && electron ./entrypoints/main.dev.js",
+    "dev": "npm-run-all --parallel dev:*"
+  },
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/react": "^15.0.29",
+    "@types/react-dom": "^15.5.0",
+    "electron": "^1.6.11",
+    "npm-run-all": "^4.0.2",
+    "ts-loader": "^2.1.0",
+    "typescript": "^2.3.4",
+    "wait-on": "^2.0.2",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-hot-loader": "v3.0.0-beta.6"
+  }
+}
