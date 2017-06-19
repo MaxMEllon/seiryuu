@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import createStore from './stores/index';
+import createStore from './stores/store';
 import Comment from './components/comment'
 
 const store = createStore();
