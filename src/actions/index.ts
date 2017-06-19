@@ -1,8 +1,7 @@
 import { Action } from 'redux';
-import { ICommentState } from '../models/ICommentState';
 
-const RECIEVE_COMMENT_NAME = 'comment/recieve';
-type RECIEVE_COMMENT_TYPE = typeof RECIEVE_COMMENT_NAME;
+export const RECIEVE_COMMENT_NAME = 'comment/recieve';
+export type RECIEVE_COMMENT_TYPE = typeof RECIEVE_COMMENT_NAME;
 
 interface RecieveCommentAction extends Action {
   type: RECIEVE_COMMENT_TYPE;
@@ -14,7 +13,5 @@ export const recieveComment = (content: string): RecieveCommentAction => ({
   content: content,
 });
 
-export interface RecieveCommentState {
-  comments: ICommentState[];
-}
 
+export type CommentActions = RecieveCommentAction;
