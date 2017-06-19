@@ -14,7 +14,6 @@
     "@types/electron": "^1.6.10",
     "@types/react": "^15.0.29",
     "@types/react-dom": "^15.5.0",
-    "@types/react-redux": "^4.4.43",
     "@types/redux": "^3.6.0",
     "@types/redux-actions": "^1.2.6",
     "@types/redux-saga": "^0.10.5",

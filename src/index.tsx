@@ -2,13 +2,13 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import createStore from './stores/store';
-import Comment from './components/comment'
+import CommentList from './components/CommentList'
 
 const store = createStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Comment content="hello" />
+    <CommentList />
   </Provider>,
   document.getElementById('main')
 );
