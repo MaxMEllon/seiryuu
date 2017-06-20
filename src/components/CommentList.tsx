@@ -1,14 +1,23 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { CommentState } from '../reducers'
+import { AppState } from '../reducers'
+import CommentModel from '../models/Comment';
+import List from '../models/List';
 
-interface Props extends CommentState {
+type CommentProps = {
+  comments: List<CommentModel>;
+}
+
+type ComponentProps = {
   className?: string;
   style?: React.CSSProperties;
   children?: any;
 }
 
-const mapStateToProps = (state: CommentState) => ({
+type Props = CommentProps & ComponentProps;
+
+type mapStateToPropsType = (state: AppState) => any;
+const mapStateToProps: mapStateToPropsType = (state: AppState) => ({
   comments: state.comments,
 });
 
@@ -18,6 +27,7 @@ class CommentList extends React.Component<Props, {}> {
   }
 
   render() {
+    console.log(this.props.comments.map((item) => item.content))
     return (
       <div className="commentList">
         {
@@ -30,7 +40,7 @@ class CommentList extends React.Component<Props, {}> {
   }
 }
 
-export default connect<any, any, any>(
+export default connect(
   mapStateToProps,
-  (dispatch: any) => ({ })
-)(CommentList);
+  () => ({})
+)<ComponentProps>(CommentList)

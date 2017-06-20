@@ -2,9 +2,11 @@ import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducer from '../reducers';
 
-type SagaOption = object;
+type LoggerOption = object;
 
-const opt: SagaOption = {}
+const opt: LoggerOption = {
+  timestamp: true,
+}
 
 const logger = createLogger(opt);
 

@@ -1,33 +1,35 @@
-import { ICommentState } from '../models/ICommentState';
+import CommentModel from '../models/Comment';
+import List from '../models/List';
 import {
   RECIEVE_COMMENT_NAME,
   DISPOSE_COMMENT_NAME,
   CommentActions,
 } from '../actions';
 
-export interface CommentState {
-  comments: ICommentState[];
+export interface AppState {
+  comments: List<CommentModel>;
 }
 
-const initialState: CommentState = {
-  comments: [],
+const initialState: AppState = {
+  comments: new List<CommentModel>(),
 };
 
 let leatestCommentId = 0;
 
-const deleteComment = (id: number, comments: ICommentState[]) => delete comments[id];
-
-export default function reducer(state: CommentState = initialState, action: CommentActions): CommentState {
+export default function reducer(state: AppState = initialState, action: CommentActions): AppState {
   switch (action.type) {
     case RECIEVE_COMMENT_NAME: {
       const nextState = Object.assign({}, state);
-      const newComment: ICommentState = { content: action.content, id: leatestCommentId++ };
-      nextState.comments.push(newComment)
+      nextState.comments = state.comments.clone();
+      const { content } = action;
+      const newComment: CommentModel = new CommentModel(content, leatestCommentId++);
+      nextState.comments.add(newComment);
       return nextState;
     }
     case DISPOSE_COMMENT_NAME: {
       const nextState = Object.assign({}, state);
-      deleteComment(action.id, nextState.comments);
+      nextState.comments = state.comments.clone();
+      nextState.comments.remove(action.id);
       return nextState;
     }
     default:
