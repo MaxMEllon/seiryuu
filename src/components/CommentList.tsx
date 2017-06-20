@@ -33,12 +33,11 @@ class CommentList extends React.Component<Props, {}> {
   }
 
   render() {
-    console.log(this.props.comments.map((item) => item.content))
     return (
       <div className="commentList">
         {
           this.props.comments.map(c => (
-            <div>
+            <div key={c.id}>
               <span> {c.content} </span>
               <span onClick={() => this.handleDisposeComment(c.id)}> ❌ </span>
             </div>
