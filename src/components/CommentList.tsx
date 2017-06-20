@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { RecieveCommentState } from '../reducers'
+import { CommentState } from '../reducers'
 
-interface Props extends RecieveCommentState {
+interface Props extends CommentState {
   className?: string;
   style?: React.CSSProperties;
   children?: any;
 }
 
-const mapStateToProps = (state: RecieveCommentState) => ({
+const mapStateToProps = (state: CommentState) => ({
   comments: state.comments,
 });
 
@@ -32,5 +32,5 @@ class CommentList extends React.Component<Props, {}> {
 
 export default connect<any, any, any>(
   mapStateToProps,
-  (dispatch: any) => ({ dispatch })
+  (dispatch: any) => ({ })
 )(CommentList);

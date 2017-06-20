@@ -5,11 +5,11 @@ import {
   CommentActions,
 } from '../actions';
 
-export interface RecieveCommentState {
+export interface CommentState {
   comments: ICommentState[];
 }
 
-const initialState: RecieveCommentState = {
+const initialState: CommentState = {
   comments: [],
 };
 
@@ -17,7 +17,7 @@ let leatestCommentId = 0;
 
 const deleteComment = (id: number, comments: ICommentState[]) => delete comments[id];
 
-export default function reducer(state: RecieveCommentState = initialState, action: CommentActions): RecieveCommentState {
+export default function reducer(state: CommentState = initialState, action: CommentActions): CommentState {
   switch (action.type) {
     case RECIEVE_COMMENT_NAME: {
       const nextState = Object.assign({}, state);
