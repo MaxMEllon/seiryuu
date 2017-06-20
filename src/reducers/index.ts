@@ -21,8 +21,7 @@ export default function reducer(state: AppState = initialState, action: CommentA
     case RECIEVE_COMMENT_NAME: {
       const nextState = Object.assign({}, state);
       nextState.comments = state.comments.clone();
-      const { content } = action;
-      const newComment: CommentModel = new CommentModel(content, leatestCommentId++);
+      const newComment: CommentModel = new CommentModel(action.content, leatestCommentId++);
       nextState.comments.add(newComment);
       return nextState;
     }

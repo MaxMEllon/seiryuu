@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { AppState } from '../reducers'
 import CommentModel from '../models/Comment';
 import List from '../models/List';
+import { disposeComment } from '../actions';
 
 type CommentProps = {
   comments: List<CommentModel>;
+  disposeById: any;
 }
 
 type ComponentProps = {
@@ -26,13 +28,20 @@ class CommentList extends React.Component<Props, {}> {
     super(props);
   }
 
+  handleDisposeComment(id: number) {
+    this.props.disposeById(id);
+  }
+
   render() {
     console.log(this.props.comments.map((item) => item.content))
     return (
       <div className="commentList">
         {
           this.props.comments.map(c => (
-            <div>{c.content}</div>
+            <div>
+              <span> {c.content} </span>
+              <span onClick={() => this.handleDisposeComment(c.id)}> ❌ </span>
+            </div>
           ))
         }
       </div>
@@ -40,7 +49,9 @@ class CommentList extends React.Component<Props, {}> {
   }
 }
 
-export default connect(
+export default connect<any, any, any>(
   mapStateToProps,
-  () => ({})
-)<ComponentProps>(CommentList)
+  (dispatch: any) => ({
+    disposeById: (id: number) => dispatch(disposeComment(id))
+  })
+)(CommentList)
