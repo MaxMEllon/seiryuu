@@ -1,3 +1,4 @@
 export type ICommentState = {
-  content: string
+  content: string;
+  id: number;
 };

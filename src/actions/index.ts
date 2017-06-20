@@ -10,8 +10,21 @@ interface RecieveCommentAction extends Action {
 
 export const recieveComment = (content: string): RecieveCommentAction => ({
   type: RECIEVE_COMMENT_NAME,
-  content: content,
+  content,
 });
 
+export const DISPOSE_COMMENT_NAME = 'comment/dispose';
+export type DISPOSE_COMMENT_TYPE = typeof DISPOSE_COMMENT_NAME;
 
-export type CommentActions = RecieveCommentAction;
+interface DisposeCommentAction extends Action {
+  type: DISPOSE_COMMENT_TYPE;
+  id: number;
+}
+
+export const disposeComment = (id: number): DisposeCommentAction => ({
+  type: DISPOSE_COMMENT_NAME,
+  id,
+})
+
+export type CommentActions = RecieveCommentAction
+  | DisposeCommentAction;

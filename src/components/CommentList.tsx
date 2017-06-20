@@ -5,13 +5,14 @@ import { RecieveCommentState } from '../reducers'
 interface Props extends RecieveCommentState {
   className?: string;
   style?: React.CSSProperties;
+  children?: any;
 }
 
 const mapStateToProps = (state: RecieveCommentState) => ({
   comments: state.comments,
 });
 
-class CommentList extends React.Component<Props, any> {
+class CommentList extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
   }
@@ -29,4 +30,7 @@ class CommentList extends React.Component<Props, any> {
   }
 }
 
-export default connect(mapStateToProps)(CommentList);
+export default connect<any, any, any>(
+  mapStateToProps,
+  (dispatch: any) => ({ dispatch })
+)(CommentList);
