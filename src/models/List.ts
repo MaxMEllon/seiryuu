@@ -1,8 +1,8 @@
 type T = any;
 type R = any;
-type where = (list: T[]) => T[];
+type where = (iterator: T) => T[];
 type callback = (iterator: T) => any;
-type each = (Iterator: T) => void | any;
+type each = (iterator: T) => void | any;
 
 export default class List<T> {
   private self: T[];
@@ -16,11 +16,11 @@ export default class List<T> {
   }
   
   each(func: each): void {
-    this.self.forEach((i) => func(i));
+    this.self.forEach(i => func(i));
   }
 
   map(func: callback): R[] {
-    return this.self.map((i) => func(i));
+    return this.self.map(i => func(i));
   }
 
   remove(id: number): void {
@@ -31,9 +31,10 @@ export default class List<T> {
     return this.self[id];
   }
 
-  where(lambda: where): T[] {
-    return lambda(this.self);
+  where(scope: where): T[] {
+    return this.self.filter(i => scope(i));
   }
+
 
   clone() {
     const c = new List<T>();
