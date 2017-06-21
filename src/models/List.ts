@@ -23,11 +23,12 @@ export default class List<T> {
   }
 
   remove(id: number): void {
-    delete this.raw[id];
+    const index: number = this.raw.findIndex((i: any): any | void => i.id == id);
+    this.raw.splice(index, 1);
   }
 
-  find(id: number): T {
-    return this.raw[id];
+  find(id: number): T | void {
+    return this.raw.find((i: any) => i.id == id);
   }
 
   where(scope: filter): T[] {
