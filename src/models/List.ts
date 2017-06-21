@@ -23,8 +23,8 @@ export default class List<T> {
   }
 
   remove(id: number): void {
-    const index: number = this.raw.findIndex((i: any): any | void => i.id == id);
-    this.raw.splice(index, 1);
+    const index: number = this.raw.findIndex((i: any): boolean => i.id == id);
+    if (index != -1) this.raw.splice(index, 1);
   }
 
   find(id: number): T | void {
