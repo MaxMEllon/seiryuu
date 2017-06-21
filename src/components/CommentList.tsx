@@ -4,19 +4,17 @@ import { AppState } from '../reducers'
 import CommentModel from '../models/Comment';
 import List from '../models/List';
 import { disposeComment } from '../actions';
+import { ComponentProps } from './types';
 
-type CommentProps = {
-  comments: List<CommentModel>;
+type DispatchActions = {
   disposeById: any;
 }
 
-type ComponentProps = {
-  className?: string;
-  style?: React.CSSProperties;
-  children?: any;
+type CommentProps = {
+  comments: List<CommentModel>;
 }
 
-type Props = CommentProps & ComponentProps;
+type Props = CommentProps & ComponentProps & DispatchActions;
 
 type mapStateToPropsType = (state: AppState) => any;
 const mapStateToProps: mapStateToPropsType = (state: AppState) => ({
@@ -24,9 +22,7 @@ const mapStateToProps: mapStateToPropsType = (state: AppState) => ({
 });
 
 class CommentList extends React.Component<Props, {}> {
-  constructor(props: Props) {
-    super(props);
-  }
+  readonly props: Props;
 
   handleDisposeComment(id: number) {
     this.props.disposeById(id);
@@ -48,9 +44,9 @@ class CommentList extends React.Component<Props, {}> {
   }
 }
 
-export default connect<any, any, any>(
+export default connect<Props, DispatchActions, React.ComponentClass<Props>>(
   mapStateToProps,
-  (dispatch: any) => ({
+  (dispatch: any): DispatchActions => ({
     disposeById: (id: number) => dispatch(disposeComment(id))
   })
 )(CommentList)

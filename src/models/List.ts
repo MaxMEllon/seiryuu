@@ -1,6 +1,6 @@
 type T = any;
 type R = any;
-type filter = (iterator: T) => T[];
+type filter = (iterator: T) => boolean;
 type mapper = (iterator: T, index: number) => any;
 
 export default class List<T> {
