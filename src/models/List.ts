@@ -1,3 +1,5 @@
+import * as md5 from 'blueimp-md5';
+
 type T = any;
 type R = any;
 type filter = (iterator: T) => boolean;
@@ -5,15 +7,27 @@ type mapper = (iterator: T, index: number) => any;
 
 export default class List<T> {
   private raw: T[];
+  private hash: string;
 
   constructor() {
     this.raw = [];
   }
 
-  add(obj: T): void {
-    this.raw.push(obj);
+  private updateHash(): void {
+    this.hash = md5(`${this.constructor.name.toString()} ${JSON.stringify(this)}`);
   }
-  
+
+  isEqual(next: any): boolean {
+    return this.hash == next.hash;
+  }
+
+  add(obj: T): List<T> {
+    const before: string = this.hash;
+    this.raw.push(obj);
+    this.updateHash();
+    return before != this.hash ? this.clone() : this;
+  }
+
   each(func: mapper): void {
     this.raw.forEach((val, index) => func(val, index));
   }
@@ -22,9 +36,12 @@ export default class List<T> {
     return this.raw.map((val, index) => func(val,index));
   }
 
-  remove(id: number): void {
+  remove(id: number): List<T> {
+    const before: string = this.hash;
     const index: number = this.raw.findIndex((i: any): boolean => i.id == id);
     if (index != -1) this.raw.splice(index, 1);
+    this.updateHash();
+    return before != this.hash ? this.clone() : this;
   }
 
   find(id: number): T | void {
