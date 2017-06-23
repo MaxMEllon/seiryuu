@@ -17,8 +17,12 @@ export default class List<T> {
     this.hash = md5(`${this.constructor.name.toString()} ${JSON.stringify(this)}`);
   }
 
-  isEqual(next: any): boolean {
+  is(next: List<T>): boolean {
     return this.hash == next.hash;
+  }
+
+  get size(): number {
+    return this.raw.length;
   }
 
   add(obj: T): List<T> {
@@ -45,11 +49,11 @@ export default class List<T> {
   }
 
   find(id: number): T | void {
-    return this.raw.find((i: any) => i.id == id);
+    return this.raw.find((i: any): boolean => i.id == id);
   }
 
   where(scope: filter): T[] {
-    return this.raw.filter(i => scope(i));
+    return this.raw.filter((i: T): boolean => scope(i));
   }
 
   clone() {

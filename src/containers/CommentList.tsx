@@ -4,7 +4,8 @@ import { AppState } from '../reducers'
 import CommentModel from '../models/Comment';
 import List from '../models/List';
 import { disposeComment } from '../actions';
-import { ComponentProps } from './types';
+import { ComponentProps } from '../types';
+import Comment from  '../components/Comment'
 
 type DispatchActions = {
   disposeById: any;
@@ -30,13 +31,22 @@ class CommentList extends React.Component<Props, {}> {
 
   render() {
     return (
-      <div className="commentList">
+      <div
+        className="commentList"
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          zIndex: 530000,
+        }}
+      >
         {
           this.props.comments.map(c => (
-            <div key={c.id}>
-              <span> {c.content} </span>
-              <span onClick={() => this.handleDisposeComment(c.id)}> ❌ </span>
-            </div>
+            <Comment
+              key={c.id}
+              comment={c}
+              dispose={() => this.handleDisposeComment(c.id)}
+            />
           ))
         }
       </div>
@@ -44,9 +54,9 @@ class CommentList extends React.Component<Props, {}> {
   }
 }
 
-export default connect<Props, DispatchActions, React.ComponentClass<Props>>(
+export default connect<CommentProps, DispatchActions, React.ComponentClass<Props>>(
   mapStateToProps,
   (dispatch: any): DispatchActions => ({
-    disposeById: (id: number) => dispatch(disposeComment(id))
+    disposeById: (id: number): void => dispatch(disposeComment(id))
   })
 )(CommentList)

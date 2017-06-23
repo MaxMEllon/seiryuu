@@ -15,11 +15,14 @@ const initialState: AppState = {
 };
 
 let leatestCommentId = 0;
+let currentViewingCommentCount = 0;
 
 export default function reducer(state: AppState = initialState, action: CommentActions): AppState {
   switch (action.type) {
     case RECIEVE_COMMENT_NAME: {
-      const newComment: CommentModel = new CommentModel(action.content, leatestCommentId++);
+      console.log(state.comments);
+      const newComment: CommentModel = new CommentModel(action.content, leatestCommentId++, currentViewingCommentCount++);
+      setTimeout(() => currentViewingCommentCount -= 1, 1000 + newComment.content.length * 100);
       return { comments: state.comments.add(newComment) };
     }
     case DISPOSE_COMMENT_NAME: {

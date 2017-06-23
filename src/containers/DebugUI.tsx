@@ -16,7 +16,11 @@ class DebugUI extends React.Component<any, any> {
 
   render() {
     return (
-      <div>
+      <div style={{
+        position: "absolute",
+        bottom: 0,
+        zIndex: 123456789,
+      }}>
         <button
           onClick={this.onClick}
         >コメント送信</button>

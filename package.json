@@ -9,7 +9,7 @@
     "dev:server": "webpack-dev-server --config ./webpack.config.dev.js --progress --watch",
     "dev:electron": "wait-on http://localhost:3000 && electron ./entrypoints/main.dev.js",
     "dev": "npm-run-all --parallel dev:*",
-    "crean": "rm -rf src/**/*.js"
+    "clean": "rm -rf src/**/*.js"
   },
   "devDependencies": {
     "@types/electron": "^1.6.10",
