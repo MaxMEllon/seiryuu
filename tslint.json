@@ -1,4 +1,5 @@
 {
   "extends": ["tslint:latest", "tslint-react", "tslint-config-standard"],
-  "space-before-function-paren": [true, "never"]
+  "space-before-function-paren": [true, "never"],
+  "jsx-no-multiline-js": "false"
 }

@@ -34,13 +34,13 @@ export default class Comment extends React.Component<IProps, IState> {
     const c = this.props.comment
     return (
       <div style={{
-        position: 'absolute',
         display: 'inline-block',
-        left: `${this.state.left}%`,
+        fontSize: '2em',
         height: '20px',
-        width: 'auto',
+        left: `${this.state.left}%`,
+        position: 'absolute',
         top: c.top,
-        fontSize: '2em'
+        width: 'auto'
       }}>
         <span>{c.content}</span>
       </div>
