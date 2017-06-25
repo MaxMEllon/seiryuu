@@ -7,7 +7,6 @@ function subscribeTimeLine (socket) {
   return eventChannel((emitter) => {
     socket.on('tweet', (e, args) => {
       const tweet = JSON.parse(args)
-      console.log(tweet)
       emitter(tweet.text)
     })
     return () => { /* do nothing */ }

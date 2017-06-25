@@ -18,7 +18,6 @@ let leatestCommentId = 0
 let currentViewingCommentCount = 0
 
 export default function reducer (state: IAppState = initialState, action: CommentActions): IAppState {
-  console.log(action)
   switch (action.type) {
     case RECIEVE_COMMENT_NAME: {
       const newComment: CommentModel = new CommentModel(
