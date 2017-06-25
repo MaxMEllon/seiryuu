@@ -35,14 +35,14 @@ export default class Comment extends React.Component<Props, IState> {
   }
 
   render () {
-    const c = this.props.comment
+    const { bottom, content } = this.props.comment
     const { left } = this.state
     return (
       <div
         className={style.commentContainer}
-        style={{ left: `${left}%`, top: c.top }}
+        style={{ left: `${left}%`, bottom }}
       >
-        <span>{c.content}</span>
+        <span>{content}</span>
       </div>
     )
   }

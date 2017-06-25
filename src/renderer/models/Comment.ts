@@ -1,22 +1,22 @@
 export interface ICommentState {
   content: string
   id: number
-  top: string
+  bottom: string
 }
 
 export default class CommentModel implements ICommentState {
   readonly content: string
   readonly id: number
-  private _top: number
+  private _bottom: number
 
-  get top (): string {
+  get bottom (): string {
     // TODO: 最下部まできたら一番上に
-    return `${this._top}em`
+    return `${this._bottom + 1}em`
   }
 
-  constructor (content, id, top) {
+  constructor (content, id, bottom) {
     this.content = content
     this.id = id
-    this._top = top % 10
+    this._bottom = bottom % 10
   }
 }

@@ -12,7 +12,12 @@ class DebugUI extends React.Component<any, any> {
   }
 
   onClick () {
-    this.props.submit('sample')
+    this.props.submit(`
+      いいかんじの
+      サンプル
+      コメント
+      だよーーーーーーーーーーーーーーーーーーーーーーーー
+    `)
   }
 
   render () {
