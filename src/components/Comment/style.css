@@ -1,0 +1,7 @@
+.commentContainer {
+  display: inline-block;
+  position: absolute;
+  font-size: 2em;
+  height: 20px;
+  width: auto;
+}

@@ -1,5 +1,6 @@
 {
   "extends": ["tslint:latest", "tslint-react", "tslint-config-standard"],
   "space-before-function-paren": [true, "never"],
-  "jsx-no-multiline-js": "false"
+  "jsx-no-multiline-js": false,
+  "jsx-no-lambda": false
 }

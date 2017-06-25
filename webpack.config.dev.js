@@ -41,6 +41,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new ExtractTextPlugin('bundle.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

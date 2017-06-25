@@ -1,11 +1,12 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { disposeComment } from '../actions'
-import Comment from '../components/Comment'
-import CommentModel from '../models/Comment'
-import List from '../models/List'
-import { IAppState } from '../reducers'
-import { IComponentProps } from '../types'
+import { disposeComment } from '../../actions'
+import Comment from '../../components/Comment'
+import CommentModel from '../../models/Comment'
+import List from '../../models/List'
+import { IAppState } from '../../reducers'
+import { IComponentProps } from '../../types'
+import * as style from './style.css'
 
 interface IDispatchActions {
   disposeById: any
@@ -31,21 +32,13 @@ class CommentList extends React.Component<Props, {}> {
 
   render () {
     return (
-      <div
-        className='commentList'
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          zIndex: 530000
-        }}
-      >
+      <div className={style.commentList}>
         {
           this.props.comments.map((c) => (
             <Comment
-              key={c.id}
-              comment={c}
-              dispose={() => this.handleDisposeComment(c.id)}
+              key = {c.id}
+              comment = {c}
+              dispose = {() => this.handleDisposeComment(c.id)}
             />
           ))
         }

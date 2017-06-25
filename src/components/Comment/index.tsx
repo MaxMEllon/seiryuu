@@ -1,8 +1,7 @@
 import * as React from 'react'
 import CommentModel from '../../models/Comment'
-
-interface IState {
-  left: number
+import * as style from './style.css'
+interface IState { left: number
 }
 
 interface IProps {
@@ -32,16 +31,12 @@ export default class Comment extends React.Component<IProps, IState> {
 
   render () {
     const c = this.props.comment
+    const { left } = this.state
     return (
-      <div style={{
-        display: 'inline-block',
-        fontSize: '2em',
-        height: '20px',
-        left: `${this.state.left}%`,
-        position: 'absolute',
-        top: c.top,
-        width: 'auto'
-      }}>
+      <div
+        className={style.commentContainer}
+        style={{ left: `${left}%`, top: c.top }}
+      >
         <span>{c.content}</span>
       </div>
     )
