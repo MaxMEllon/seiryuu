@@ -13,6 +13,15 @@
       true,
       "no-public"
     ],
+    "semicolon":[
+      true,
+      "never"
+    ],
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
     "jsx-no-multiline-js": false,
     "jsx-no-lambda": false,
     "variable-name": [

@@ -1,1 +1,1 @@
-export const commentContainer: string;
+export const commentContainer: string
