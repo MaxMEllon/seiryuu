@@ -1,7 +1,10 @@
 import * as React from 'react'
 import CommentModel from '../../models/Comment'
+import { IComponentProps } from '../../types'
 import * as style from './style.css'
-interface IState { left: number
+
+interface IState {
+  left: number
 }
 
 interface IProps {
@@ -9,7 +12,9 @@ interface IProps {
   dispose: any
 }
 
-export default class Comment extends React.Component<IProps, IState> {
+type Props = IProps & IComponentProps
+
+export default class Comment extends React.Component<Props, IState> {
   constructor (props) {
     super(props)
     this.state = {

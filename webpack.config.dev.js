@@ -11,7 +11,9 @@ module.exports = {
     ],
   },
   output: {
-    filename: './dist/bundle.js'
+    path: `${__dirname}/dist/`,
+    filename: 'bundle.js',
+    libraryTarget: 'umd',
   },
   devtool: 'source-map',
   resolve: {
