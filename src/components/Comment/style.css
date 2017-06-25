@@ -3,5 +3,10 @@
   position: absolute;
   font-size: 2em;
   height: 20px;
-  width: auto;
+  width: 200%;
+}
+
+.commentContainer > span {
+  height: 20px;
+  width:  200%;
 }

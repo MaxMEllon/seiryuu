@@ -16,9 +16,10 @@ const client = new Twitter({
 const stream = client.stream('user')
 
 app.on('ready', () => {
+  const size = electron.screen.getPrimaryDisplay().size
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 800,
+    width: size.width,
+    height: size.height,
     frame: false,
     show: true,
     transparent: true,
@@ -30,6 +31,7 @@ app.on('ready', () => {
   });
   mainWindow.on('closed', () => (mainWindow = null));
   mainWindow.maximize();
+  mainWindow.setIgnoreMouseEvents(true);
   mainWindow.loadURL('http://localhost:3000');
   ipcMain.on('boot', (event, arg) => {
     stream.on('data', (e) => {
@@ -37,5 +39,6 @@ app.on('ready', () => {
     })
   })
 });
+
 
 app.on('window-all-closed', () => app.quit());

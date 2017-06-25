@@ -1,13 +1,14 @@
 import { ipcRenderer } from 'electron'
 import { eventChannel } from 'redux-saga'
-import { call, fork, take } from 'redux-saga/effects'
+import { call, fork, put, take } from 'redux-saga/effects'
 import * as actions from '../actions'
 
 function subscribeTimeLine (socket) {
   return eventChannel((emitter) => {
     socket.on('tweet', (e, args) => {
       const tweet = JSON.parse(args)
-      emitter(actions.recieveComment(tweet.text))
+      console.log(tweet)
+      emitter(tweet.text)
     })
     return () => { /* do nothing */ }
   })
@@ -15,9 +16,10 @@ function subscribeTimeLine (socket) {
 
 function* flow () {
   ipcRenderer.send('boot', 'ping')
-  yield call(subscribeTimeLine, ipcRenderer)
+  const channel = yield call(subscribeTimeLine, ipcRenderer)
   while (true) {
-    yield take(actions.APPLICATION_STOP_NAME)
+    const payload = yield take(channel)
+    yield put(actions.recieveComment(payload))
   }
 }
 
