@@ -6,21 +6,25 @@ import {
 import CommentModel from '../models/Comment'
 import List from '../models/List'
 
-export interface AppState {
+export interface IAppState {
   comments: List<CommentModel>
 }
 
-const initialState: AppState = {
+const initialState: IAppState = {
   comments: new List<CommentModel>()
 }
 
 let leatestCommentId = 0
 let currentViewingCommentCount = 0
 
-export default function reducer (state: AppState = initialState, action: CommentActions): AppState {
+export default function reducer (state: IAppState = initialState, action: CommentActions): IAppState {
   switch (action.type) {
     case RECIEVE_COMMENT_NAME: {
-      const newComment: CommentModel = new CommentModel(action.content, leatestCommentId++, currentViewingCommentCount++)
+      const newComment: CommentModel = new CommentModel(
+        action.content,
+        leatestCommentId++,
+        currentViewingCommentCount++
+      )
       setTimeout(() => currentViewingCommentCount -= 1, 1000 + newComment.content.length * 100)
       return { comments: state.comments.add(newComment) }
     }

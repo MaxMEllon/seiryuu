@@ -4,21 +4,21 @@ import { disposeComment } from '../actions'
 import Comment from '../components/Comment'
 import CommentModel from '../models/Comment'
 import List from '../models/List'
-import { AppState } from '../reducers'
-import { ComponentProps } from '../types'
+import { IAppState } from '../reducers'
+import { IComponentProps } from '../types'
 
-interface DispatchActions {
+interface IDispatchActions {
   disposeById: any
 }
 
-interface CommentProps {
+interface ICommentProps {
   comments: List<CommentModel>
 }
 
-type Props = CommentProps & ComponentProps & DispatchActions
+type Props = ICommentProps & IComponentProps & IDispatchActions
 
-type mapStateToPropsType = (state: AppState) => any
-const mapStateToProps: mapStateToPropsType = (state: AppState) => ({
+type mapStateToPropsType = (state: IAppState) => any
+const mapStateToProps: mapStateToPropsType = (state: IAppState) => ({
   comments: state.comments
 })
 
@@ -54,9 +54,9 @@ class CommentList extends React.Component<Props, {}> {
   }
 }
 
-export default connect<CommentProps, DispatchActions, React.ComponentClass<Props>>(
+export default connect<ICommentProps, IDispatchActions, React.ComponentClass<Props>>(
   mapStateToProps,
-  (dispatch: any): DispatchActions => ({
+  (dispatch: any): IDispatchActions => ({
     disposeById: (id: number): void => dispatch(disposeComment(id))
   })
 )(CommentList)

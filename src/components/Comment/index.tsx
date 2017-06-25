@@ -1,5 +1,5 @@
 import * as React from 'react'
-import CommentModel from '../models/Comment'
+import CommentModel from '../../models/Comment'
 
 interface IState {
   left: number

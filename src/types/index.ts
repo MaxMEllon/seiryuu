@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export interface ComponentProps {
+export interface IComponentProps {
   className?: string
   style?: React.CSSProperties
   children?: any
