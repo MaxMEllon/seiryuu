@@ -6,6 +6,8 @@
 
 "seiryuu" is a timeline watcher of twitter like comment in nicovideo.
 
+![](./.github/demo.gif)
+
 ## Installation
 
 > TODO
