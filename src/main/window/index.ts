@@ -27,6 +27,6 @@ export default function windowInitalizer(size: Electron.Size, windowCreator: Win
     })
     twitter.deliverToRenderer(event.sender)
   })
-
+  if (process.env.NODE_ENV !== 'production') mainWindow.openDevTools()
   mainWindow.on('closed', () => (mainWindow = null))
 }
