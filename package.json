@@ -13,12 +13,9 @@
     "lint": " tslint --type-check --project tsconfig.json --fix src/**/*.tsx src/**/*.ts"
   },
   "devDependencies": {
-    "@types/electron": "^1.6.10",
     "@types/react": "^15.0.29",
     "@types/react-dom": "^15.5.0",
     "@types/redux": "^3.6.0",
-    "@types/redux-actions": "^1.2.6",
-    "@types/redux-saga": "^0.10.5",
     "css-loader": "^0.28.4",
     "electron": "^1.6.11",
     "extract-text-webpack-plugin": "^2.1.2",
@@ -43,7 +40,6 @@
     "react-hot-loader": "v3.0.0-beta.6",
     "react-redux": "^5.0.5",
     "redux": "^3.7.0",
-    "redux-actions": "^2.0.3",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.3"
   }

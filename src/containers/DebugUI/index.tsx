@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { recieveComment } from '../actions'
+import { recieveComment } from '../../actions'
+import * as style from './style.css'
 
 const mapStateToProps = (state: any) => ({ })
 
@@ -16,14 +17,8 @@ class DebugUI extends React.Component<any, any> {
 
   render () {
     return (
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        zIndex: 123456789
-      }}>
-        <button
-          onClick={this.onClick}
-        >コメント送信</button>
+      <div className={style.container}>
+        <button onClick={this.onClick}>コメント送信</button>
       </div>
     )
   }
