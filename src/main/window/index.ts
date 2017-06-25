@@ -1,8 +1,8 @@
 type WindowCreator = new (opt?: Electron.BrowserWindowConstructorOptions) => (
   Electron.BrowserWindow
-)
+);
 
-export default function windowInitalizer (size: Electron.Size, windowCreator: WindowCreator) {
+export default function windowInitalizer(size: Electron.Size, windowCreator: WindowCreator) {
   let mainWindow: Electron.BrowserWindow | null = new windowCreator({
     alwaysOnTop: true,
     frame: false,
@@ -10,10 +10,10 @@ export default function windowInitalizer (size: Electron.Size, windowCreator: Wi
     resizable: false,
     show: true,
     transparent: true,
-    width: size.width
-  })
-  mainWindow.on('closed', () => (mainWindow = null))
-  mainWindow.maximize()
-  if (process.env.NODE_ENV === 'production') mainWindow.setIgnoreMouseEvents(true)
-  mainWindow.loadURL('http://localhost:3000')
+    width: size.width,
+  });
+  mainWindow.on("closed", () => (mainWindow = null));
+  mainWindow.maximize();
+  mainWindow.setIgnoreMouseEvents(true);
+  mainWindow.loadURL("http://localhost:3000");
 }

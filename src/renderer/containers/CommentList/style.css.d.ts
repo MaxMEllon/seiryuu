@@ -1,1 +1,1 @@
-export const commentList: string
+export const commentList: string;

@@ -1,6 +1,23 @@
 {
-  "extends": ["tslint:latest", "tslint-react", "tslint-config-standard"],
-  "space-before-function-paren": [true, "never"],
-  "jsx-no-multiline-js": false,
-  "jsx-no-lambda": false
+  "extends": ["tslint:recommended", "tslint-react"],
+  "rules": {
+    "space-before-function-paren": [
+      true,
+      "never"
+    ],
+    "curly": [
+      true,
+      "ignore-same-line"
+    ],
+    "member-access": [
+      true,
+      "no-public"
+    ],
+    "jsx-no-multiline-js": false,
+    "jsx-no-lambda": false,
+    "variable-name": [
+      true,
+      "allow-leading-underscore"
+    ]
+  }
 }

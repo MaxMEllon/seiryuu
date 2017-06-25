@@ -1,7 +1,7 @@
-import * as React from 'react'
+import * as React from "react";
 
 export interface IComponentProps {
-  className?: string
-  style?: React.CSSProperties
-  children?: any
+  className?: string;
+  style?: React.CSSProperties;
+  children?: any;
 }
