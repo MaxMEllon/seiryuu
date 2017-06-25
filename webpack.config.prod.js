@@ -1,51 +1,18 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const config = require('./webpack.config.base')
 
-process.env.NODE_ENV = 'production';
+config.entry = {
+  app: './src/renderer/index.tsx',
+};
 
-module.exports = {
-  entry: {
-    app: './src/index.tsx',
-  },
-  output: {
-    path: `${__dirname}/dist/`,
-    filename: 'bundle.js',
-    libraryTarget: 'umd',
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
-  },
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: [
-          {
-            loader: 'ts-loader',
-          }
-        ]
-      },
-      {
-        test: /\.css?/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader?modules&localIdentName=[name]-[hash:base64:5]',
-            'postcss-loader',
-          ],
-        }),
-      }
+const defPlugin = new webpack.DefinePlugin({
+  'process.env': {
+    NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+  }
+});
 
-    ]
-  },
-  plugins: [
-    new ExtractTextPlugin('bundle.css'),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({ minimize: true }),
-    new webpack.optimize.UglifyJsPlugin({ sourceMap: false, comments: false }),
-  ],
-}
+config.plugins.push(defPlugin);
+config.plugins.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
+config.plugins.push(new webpack.optimize.UglifyJsPlugin({ sourceMap: false, comments: false }));
+
+module.exports = config;
