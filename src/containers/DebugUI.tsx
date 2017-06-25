@@ -1,32 +1,32 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
+import * as React from 'react'
+import { connect } from 'react-redux'
 import { recieveComment } from '../actions'
 
-const mapStateToProps = (state: any) => ({ });
+const mapStateToProps = (state: any) => ({ })
 
 class DebugUI extends React.Component<any, any> {
-  constructor(props) {
-    super(props);
-    this.onClick = this.onClick.bind(this);
+  constructor (props) {
+    super(props)
+    this.onClick = this.onClick.bind(this)
   }
 
-  onClick() {
-    this.props.submit("sample");
+  onClick () {
+    this.props.submit('sample')
   }
 
-  render() {
+  render () {
     return (
       <div style={{
-        position: "absolute",
+        position: 'absolute',
         bottom: 0,
-        zIndex: 123456789,
+        zIndex: 123456789
       }}>
         <button
           onClick={this.onClick}
         >コメント送信</button>
       </div>
-    );
-  };
+    )
+  }
 }
 
 export default connect<any, any, any>(
@@ -34,4 +34,4 @@ export default connect<any, any, any>(
   (dispatch: any) => ({
     submit: (content: string) => dispatch(recieveComment(content))
   })
-)(DebugUI);
+)(DebugUI)

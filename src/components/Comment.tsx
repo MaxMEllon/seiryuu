@@ -1,36 +1,36 @@
-import * as React from 'react';
-import CommentModel from '../models/Comment';
+import * as React from 'react'
+import CommentModel from '../models/Comment'
 
-type State = {
-  left: number;
+interface IState {
+  left: number
 }
 
-type Props = {
-  comment: CommentModel;
-  dispose: any;
+interface IProps {
+  comment: CommentModel
+  dispose: any
 }
 
-export default class Comment extends React.Component<Props, State> {
-  constructor(props) {
-    super(props);
+export default class Comment extends React.Component<IProps, IState> {
+  constructor (props) {
+    super(props)
     this.state = {
-      left: 100,
-    };
+      left: 100
+    }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const animationInterval = setInterval(() => {
-      const left = this.state.left - 0.2;
+      const left = this.state.left - 0.2
       if (left <= - 25) {
-        clearInterval(animationInterval);
-        this.props.dispose();
+        clearInterval(animationInterval)
+        this.props.dispose()
       } else {
-        this.setState({ left });
+        this.setState({ left })
       }
-    }, 10);
+    }, 10)
   }
 
-  render() {
+  render () {
     const c = this.props.comment
     return (
       <div style={{
@@ -40,10 +40,10 @@ export default class Comment extends React.Component<Props, State> {
         height: '20px',
         width: 'auto',
         top: c.top,
-        fontSize: '2em',
+        fontSize: '2em'
       }}>
         <span>{c.content}</span>
       </div>
-    );
+    )
   }
 }

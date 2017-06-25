@@ -9,7 +9,8 @@
     "dev:server": "webpack-dev-server --config ./webpack.config.dev.js --progress --watch",
     "dev:electron": "wait-on http://localhost:3000 && electron ./entrypoints/main.dev.js",
     "dev": "npm-run-all --parallel dev:*",
-    "clean": "rm -rf src/**/*.js"
+    "clean": "rm -rf src/**/*.js",
+    "lint": " tslint --type-check --project tsconfig.json --fix src/**/*.tsx src/**/*.ts"
   },
   "devDependencies": {
     "@types/electron": "^1.6.10",
@@ -35,6 +36,9 @@
     "redux": "^3.7.0",
     "redux-actions": "^2.0.3",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.15.3"
+    "redux-saga": "^0.15.3",
+    "tslint": "^5.4.3",
+    "tslint-config-standard": "^6.0.1",
+    "tslint-react": "^3.0.0"
   }
 }
