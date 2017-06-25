@@ -6,11 +6,13 @@
   "author": "MaxMEllon <maxmellon1994@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "compile:main": "tsc --outDir dist/main src/main/index.ts",
     "dev:server": "webpack-dev-server --config ./webpack.config.dev.js --progress --watch",
-    "predev:electron": "tsc --outDir dist/main src/main/index.ts",
+    "predev:electron": "yarn run compile:main",
     "dev:electron": "wait-on http://localhost:3000 && electron ./dist/main/index.js",
     "dev": "npm-run-all --parallel dev:*",
     "clean": "rm -rf src/**/**/*.js",
+    "prebuild": "yarn run compile:main",
     "build": "webpack -p --progress --config ./webpack.config.prod.js",
     "test:lint": "tslint -c ./tslint.json --fix $(git ls-files | grep -E \"\\.tsx?$\")",
     "test": "npm-run-all test:*"
