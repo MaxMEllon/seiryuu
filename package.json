@@ -16,7 +16,7 @@
     "build": "webpack -p --progress --config ./webpack/config.prod.js",
     "unit": "tsc && ava dist/**/__test__/*.js",
     "test:lint": "tslint -c ./tslint.json --fix $(git ls-files | grep -E \"\\.tsx?$\")",
-    "test:cover" : "tsc && nyc ava dist/**/__test__/*.js",
+    "test:cover" : "tsc --module commonjs && nyc ava dist/**/__test__/*.js",
     "test": "npm-run-all test:*"
   },
   "devDependencies": {
