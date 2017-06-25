@@ -4,7 +4,7 @@
 
 ## About
 
-"seiryuu" is a timeline watcher of twitter like comment in nicovideo.
+**seiryuu** is a timeline watcher of twitter, like comment in nicovideo.
 
 ![](./.github/demo.gif)
 
@@ -14,11 +14,25 @@
 
 ## For development
 
+`.env` is necessary to development.
+So, you must create .env to project root.
+
+`.env`
+
+```command
+TWITTER_CONSUMER_KEY="xxxxxxxxxxxxxxxxxxxxxxxxx"
+TWITTER_CONSUMER_SECRET_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+TWITTER_TOKEN_KEY="000000000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+TWITTER_TOKEN_SECRET_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+
+Then you can execute to command as following, boot the **seiryuu**.
+(dont need `yarn i` if you downloaded node_modules.)
+
 ```command
 $ git clone https://github.com/MaxMEllon/seiryuu.git && cd seiryuu
 $ yarn i
 $ yarn run dev
-# Access to http://localhost:3000 or execute to `$(npm bin)/electron .`
 ```
 
 ## Dependencies
