@@ -31,7 +31,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new Dotenv({ path: './.env' }),
+    new Dotenv({ path: `${__dirname}/.env` }),
     new ExtractTextPlugin('bundle.css'),
   ]
 }
