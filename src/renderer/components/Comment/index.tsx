@@ -24,8 +24,9 @@ export default class Comment extends React.Component<Props, IState> {
 
   componentDidMount() {
     const animationInterval = setInterval(() => {
-      const left = this.state.left - 0.2
-      if (left <= - 200) {
+      const { length } = this.props.comment.content
+      const left = (this.state.left - 0.2) - length * 0.002
+      if (left <= - length * 2.3) {
         clearInterval(animationInterval)
         this.props.dispose()
       } else {
