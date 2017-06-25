@@ -1,5 +1,6 @@
 # seiryuu
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b481355921ea46009fe432fcffa53957)](https://www.codacy.com/app/MaxMEllon/seiryuu?utm_source=github.com&utm_medium=referral&utm_content=MaxMEllon/seiryuu&utm_campaign=badger)
 [![CircleCI](https://circleci.com/gh/MaxMEllon/seiryuu/tree/master.svg?style=svg)](https://circleci.com/gh/MaxMEllon/seiryuu/tree/master)
 
 ## About
