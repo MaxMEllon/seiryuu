@@ -10,8 +10,8 @@
     "dev:electron": "wait-on http://localhost:3000 && electron ./entrypoints/main.dev.js",
     "dev": "npm-run-all --parallel dev:*",
     "clean": "rm -rf src/**/*.js",
-    "build" : "webpack -p --progress --config ./webpack.config.prod.js",
-    "test:lint":" tslint --type-check --project tsconfig.json --fix src/**/*.tsx src/**/*.ts",
+    "build": "webpack -p --progress --config ./webpack.config.prod.js",
+    "test:lint": " tslint --type-check --project tsconfig.json --fix src/**/*.tsx src/**/*.ts",
     "test": "npm-run-all test:*"
   },
   "devDependencies": {
@@ -19,6 +19,7 @@
     "@types/react-dom": "^15.5.0",
     "@types/redux": "^3.6.0",
     "css-loader": "^0.28.4",
+    "dotenv-webpack": "^1.5.0",
     "electron": "^1.6.11",
     "extract-text-webpack-plugin": "^2.1.2",
     "npm-run-all": "^4.0.2",
@@ -37,12 +38,14 @@
   },
   "dependencies": {
     "blueimp-md5": "^2.7.0",
+    "dotenv": "^4.0.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "v3.0.0-beta.6",
     "react-redux": "^5.0.5",
     "redux": "^3.7.0",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.15.3"
+    "redux-saga": "^0.15.3",
+    "twitter": "^1.7.1"
   }
 }

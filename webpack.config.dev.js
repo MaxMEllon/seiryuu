@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -13,12 +14,18 @@ module.exports = {
   output: {
     path: `${__dirname}/dist/`,
     filename: 'bundle.js',
-    libraryTarget: 'umd',
+    libraryTarget: 'commonjs2',
   },
   devtool: 'source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },
+  externals: [
+    'electron',
+    'fs',
+    'net',
+    'tls',
+  ],
   module: {
     rules: [
       {
@@ -43,6 +50,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new Dotenv({ path: './.env' }),
     new ExtractTextPlugin('bundle.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),

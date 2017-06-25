@@ -26,5 +26,29 @@ export const disposeComment = (id: number): IDisposeCommentAction => ({
   type: DISPOSE_COMMENT_NAME
 })
 
+export const APPLICATION_BOOT_NAME = 'application/boot'
+export type APPLICATION_BOOT_TYPE = typeof APPLICATION_BOOT_NAME
+
+interface IBootApplicationAction extends Action {
+  type: APPLICATION_BOOT_TYPE
+}
+
+export const bootApplication = (): IBootApplicationAction => ({
+  type: APPLICATION_BOOT_NAME
+})
+
+export const APPLICATION_STOP_NAME = 'application/stop'
+export type APPLICATION_STOP_TYPE = typeof APPLICATION_STOP_NAME
+
+interface IStopApplicationAction extends Action {
+  type: APPLICATION_STOP_TYPE
+}
+
+export const stopApplication = (): IStopApplicationAction => ({
+  type: APPLICATION_STOP_NAME
+})
+
 export type CommentActions = IRecieveCommentAction
   | IDisposeCommentAction
+  | IBootApplicationAction
+  | IStopApplicationAction

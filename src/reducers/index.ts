@@ -18,6 +18,7 @@ let leatestCommentId = 0
 let currentViewingCommentCount = 0
 
 export default function reducer (state: IAppState = initialState, action: CommentActions): IAppState {
+  console.log(action)
   switch (action.type) {
     case RECIEVE_COMMENT_NAME: {
       const newComment: CommentModel = new CommentModel(
@@ -25,7 +26,7 @@ export default function reducer (state: IAppState = initialState, action: Commen
         leatestCommentId++,
         currentViewingCommentCount++
       )
-      setTimeout(() => currentViewingCommentCount -= 1, 1000 + newComment.content.length * 100)
+      currentViewingCommentCount %= 10
       return { comments: state.comments.add(newComment) }
     }
     case DISPOSE_COMMENT_NAME: {

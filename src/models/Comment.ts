@@ -17,6 +17,6 @@ export default class CommentModel implements ICommentState {
   constructor (content, id, top) {
     this.content = content
     this.id = id
-    this._top = top
+    this._top = top % 10
   }
 }
