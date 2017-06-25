@@ -18,7 +18,9 @@ interface ICommentProps {
 
 type Props = ICommentProps & IComponentProps & IDispatchActions
 
-type mapStateToPropsType = (state: IAppState) => any
+type mapStateToPropsType = (state: IAppState) => ({
+  comments: List<CommentModel>
+})
 const mapStateToProps: mapStateToPropsType = (state: IAppState) => ({
   comments: state.comments
 })

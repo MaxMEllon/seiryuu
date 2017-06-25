@@ -10,7 +10,8 @@
     "dev:electron": "wait-on http://localhost:3000 && electron ./entrypoints/main.dev.js",
     "dev": "npm-run-all --parallel dev:*",
     "clean": "rm -rf src/**/*.js",
-    "test:lint": " tslint --type-check --project tsconfig.json --fix src/**/*.tsx src/**/*.ts", 
+    "build" : "webpack -p --progress --config ./webpack.config.prod.js",
+    "test:lint":" tslint --type-check --project tsconfig.json --fix src/**/*.tsx src/**/*.ts",
     "test": "npm-run-all test:*"
   },
   "devDependencies": {
