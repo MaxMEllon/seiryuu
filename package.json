@@ -11,11 +11,12 @@
     "predev:electron": "yarn run compile:main",
     "dev:electron": "wait-on http://localhost:3000 && electron ./dist/main/index.js",
     "dev": "npm-run-all --parallel dev:*",
-    "clean": "rm -rf src/**/**/*.js",
+    "clean": "rm -rf src/**/**/*.js src/**/**/**/*.js",
     "prebuild": "yarn run compile:main",
     "build": "webpack -p --progress --config ./webpack/config.prod.js",
+    "unit": "tsc && ava dist/**/__test__/*.js",
     "test:lint": "tslint -c ./tslint.json --fix $(git ls-files | grep -E \"\\.tsx?$\")",
-    "test:unit": "tsc && ava dist/**/__test__/*.js",
+    "test:cover" : "tsc && nyc ava dist/**/__test__/*.js",
     "test": "npm-run-all test:*"
   },
   "devDependencies": {
@@ -29,6 +30,7 @@
     "extract-text-webpack-plugin": "^2.1.2",
     "karma-electron": "^5.2.1",
     "npm-run-all": "^4.0.2",
+    "nyc": "^11.0.2",
     "postcss": "^6.0.3",
     "postcss-cssnext": "^2.11.0",
     "postcss-loader": "^2.0.6",

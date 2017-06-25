@@ -11,7 +11,7 @@ export default class List<T> {
 
   constructor() {
     this.raw = []
-    this._hash = ''
+    this.updateHash()
   }
 
   get hash(): string {
@@ -22,7 +22,7 @@ export default class List<T> {
     return this.raw.length
   }
 
-  is(next: List<T>): boolean {
+  is(next: any): boolean {
     return this.hash === next.hash
   }
 
@@ -60,10 +60,11 @@ export default class List<T> {
   clone() {
     const c = new List<T>()
     c.raw = this.raw
+    c.updateHash()
     return c
   }
 
   private updateHash(): void {
-    this._hash = md5(`${this.constructor.name.toString()} ${JSON.stringify(this)}`)
+    this._hash = md5(`${this.constructor.name.toString()} ${JSON.stringify(this.raw)}`)
   }
 }
