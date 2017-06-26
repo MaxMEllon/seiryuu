@@ -1,9 +1,8 @@
 import * as md5 from 'blueimp-md5'
 
-type T = any
-type R = any
-type filter = (iterator: T) => boolean
-type mapper = (iterator: T, index: number) => any
+type filter<T> = (iterator: T) => boolean
+type each<T> = (iterator: T, index: number) => any
+type mapper<T, R> = (iterator: T, index: number) => any
 
 export default class List<T> {
   private raw: T[]
@@ -33,11 +32,11 @@ export default class List<T> {
     return before !== this.hash ? this.clone() : this
   }
 
-  each(func: mapper): void {
+  each(func: each<T>): void {
     this.raw.forEach((val, index) => func(val, index))
   }
 
-  map(func: mapper): R[] {
+  map<R>(func: mapper<T, R>): R[] {
     return this.raw.map((val, index) => func(val, index))
   }
 
@@ -53,7 +52,7 @@ export default class List<T> {
     return this.raw.find((i: any): boolean => i.id === id)
   }
 
-  where(scope: filter): T[] {
+  where(scope: filter<T>): T[] {
     return this.raw.filter((i: T): boolean => scope(i))
   }
 
