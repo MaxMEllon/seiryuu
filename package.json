@@ -16,7 +16,7 @@
     "build": "webpack -p --progress --config ./webpack/config.prod.js",
     "unit": "tsc && ava dist/**/__test__/*.js",
     "test:lint": "tslint -c ./tslint.json --fix $(git ls-files | grep -E \"\\.tsx?$\")",
-    "test:cover" : "tsc --module commonjs && nyc ava dist/**/__test__/*.js",
+    "test:cover": "tsc --module commonjs && nyc ava dist/**/__test__/*.js",
     "test": "npm-run-all test:*"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "redux": "^3.7.0",
+    "redux": "^3.7.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.3",
     "sinon": "^2.3.5",
@@ -51,7 +51,7 @@
     "tslint-react": "^3.0.0",
     "typescript": "^2.3.4",
     "wait-on": "^2.0.2",
-    "webpack": "^2.6.1",
+    "webpack": "3",
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
