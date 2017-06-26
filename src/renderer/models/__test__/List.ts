@@ -1,17 +1,22 @@
 import { test } from 'ava'
 import List from '../List'
 
+interface ITestData {
+  id: number,
+  content?: string,
+}
+
 test('List<T>().add()', (t) => {
   const list = new List<number>()
-  t.deepEqual(list.map((i) => i), [])
+  t.deepEqual(list.map<number>((i) => i), [])
   list.add(1)
-  t.deepEqual(list.map((i) => i), [1])
+  t.deepEqual(list.map<number>((i) => i), [1])
   list.add(2)
-  t.deepEqual(list.map((i) => i), [1, 2])
+  t.deepEqual(list.map<number>((i) => i), [1, 2])
 })
 
 test('List<T>().remove()', (t) => {
-  const list = new List<any>()
+  const list = new List<ITestData>()
   list.add({ id: 0 })
   list.add({ id: 1 })
   list.add({ id: 2 })
@@ -20,17 +25,17 @@ test('List<T>().remove()', (t) => {
   list.remove(3)
   list.remove(8)
   list.remove(22)
-  t.deepEqual(list.map((i) => i.id), [0, 1, 2])
+  t.deepEqual(list.map<number>((i) => i.id), [0, 1, 2])
   list.add({ id: 3 })
   t.is(before, list.hash)
 })
 
 test('List<T>().is()', (t) => {
-  const list1 = new List<any>()
+  const list1 = new List<ITestData>()
   list1.add({ id: 0 })
   list1.add({ id: 1 })
   list1.add({ id: 2 })
-  const list2 = new List<any>()
+  const list2 = new List<ITestData>()
   list2.add({ id: 0 })
   list2.add({ id: 1 })
   list2.add({ id: 2 })
@@ -39,7 +44,7 @@ test('List<T>().is()', (t) => {
 })
 
 test('List<T>().each()', (t) => {
-  const list = new List<any>()
+  const list = new List<ITestData>()
   list.add({ id: 0 })
   list.add({ id: 1 })
   list.add({ id: 2 })
@@ -48,7 +53,7 @@ test('List<T>().each()', (t) => {
 })
 
 test('List<T>().map()', (t) => {
-  const list = new List<any>()
+  const list = new List<ITestData>()
   list.add({ id: 0 })
   list.add({ id: 1 })
   list.add({ id: 2 })
@@ -56,7 +61,7 @@ test('List<T>().map()', (t) => {
 })
 
 test('List<T>().find()', (t) => {
-  const list = new List<any>()
+  const list = new List<ITestData>()
   list.add({ id: 0 })
   list.add({ id: 1 })
   list.add({ id: 2 })
@@ -66,7 +71,7 @@ test('List<T>().find()', (t) => {
 })
 
 test('List<T>().where()', (t) => {
-  const list = new List<any>()
+  const list = new List<ITestData>()
   list.add({ id: 0, content: 'hoge' })
   list.add({ id: 1, content: 'poge' })
   list.add({ id: 2, content: 'hoge' })
@@ -77,7 +82,7 @@ test('List<T>().where()', (t) => {
 })
 
 test('List<T>().clone()', (t) => {
-  const list = new List<any>()
+  const list = new List<ITestData>()
   list.add({ id: 0, content: 'hoge' })
   list.add({ id: 1, content: 'poge' })
   list.add({ id: 2, content: 'hoge' })
@@ -87,7 +92,7 @@ test('List<T>().clone()', (t) => {
 })
 
 test('List<T>().size', (t) => {
-  const list = new List<any>()
+  const list = new List<ITestData>()
   list.add({ id: 0 })
   list.add({ id: 1 })
   list.add({ id: 2 })
