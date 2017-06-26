@@ -21,10 +21,10 @@ export default function reducer(state: IAppState = initialState, action: Comment
   switch (action.type) {
     case RECIEVE_COMMENT_NAME: {
       const newComment: CommentModel = new CommentModel({
-        content: action.content,
-        name: action.name,
-        id: leatestCommentId++,
         bottom: currentViewingCommentCount++,
+        content: action.content,
+        id: leatestCommentId++,
+        name: action.name,
       })
       currentViewingCommentCount %= 10
       return { comments: state.comments.add(newComment) }
