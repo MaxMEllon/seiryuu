@@ -10,5 +10,5 @@ test('Comment', (t) => {
   })
   t.is(c.content, 'sample')
   t.is(c.id, 0)
-  t.is(c.bottom, '3em')
+  t.is(c.bottom, '4em')
 })
