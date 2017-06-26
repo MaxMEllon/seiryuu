@@ -36,7 +36,7 @@ export default class Comment extends React.Component<Props, IState> {
   }
 
   render() {
-    const { bottom, content } = this.props.comment
+    const { bottom, content, name } = this.props.comment
     const { left } = this.state
     return (
       <div
@@ -44,6 +44,7 @@ export default class Comment extends React.Component<Props, IState> {
         style={{ left: `${left}%`, bottom }}
       >
         <span>{content}</span>
+        <span className={style.name}>{`@${name}`}</span>
       </div>
     )
   }

@@ -10,3 +10,9 @@
   height: 20px;
   width: calc(2em * 140);
 }
+.name {
+  height: 20px;
+  width: 200px;
+  overflow: hidden;
+  font-size: 0.5em;
+}

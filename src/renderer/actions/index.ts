@@ -6,10 +6,12 @@ export type RECIEVE_COMMENT_TYPE = typeof RECIEVE_COMMENT_NAME
 interface IRecieveCommentAction extends Action {
   type: RECIEVE_COMMENT_TYPE
   content: string
+  name: string
 }
 
-export const recieveComment = (content: string): IRecieveCommentAction => ({
+export const recieveComment = (content: string, name: string): IRecieveCommentAction => ({
   content,
+  name,
   type: RECIEVE_COMMENT_NAME,
 })
 

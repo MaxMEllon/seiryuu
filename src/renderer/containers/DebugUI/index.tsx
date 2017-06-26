@@ -12,7 +12,7 @@ class DebugUI extends React.Component<any, any> {
   }
 
   onClick() {
-    this.props.submit('sample comment')
+    this.props.submit('sample comment', 'sample user')
   }
 
   render() {
@@ -27,6 +27,6 @@ class DebugUI extends React.Component<any, any> {
 export default connect<any, any, any>(
   mapStateToProps,
   (dispatch: any) => ({
-    submit: (content: string) => dispatch(recieveComment(content)),
+    submit: (content: string, name: string) => dispatch(recieveComment(content, name)),
   }),
 )(DebugUI)

@@ -7,9 +7,10 @@ function subscribeTimeLine(socket) {
   return eventChannel((emitter) => {
     socket.on('tweet', (e, args) => {
       const tweet = JSON.parse(args)
-      emitter(tweet.text)
+      emitter(tweet)
     })
     socket.on('quit', () => {
+      localStorage.clear()
       emitter(END)
     })
     return () => socket.removeAllListeners(['tweet', 'quit'])
@@ -21,7 +22,7 @@ function* flow() {
   const channel = yield call(subscribeTimeLine, ipcRenderer)
   while (true) {
     const payload = yield take(channel)
-    yield put(actions.recieveComment(payload))
+    yield put(actions.recieveComment(payload.text, payload.user.name))
   }
 }
 
