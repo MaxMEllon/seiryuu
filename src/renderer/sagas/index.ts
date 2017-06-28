@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron'
-import { END, eventChannel } from 'redux-saga'
+import { END, eventChannel, takeEvery } from 'redux-saga'
 import { call, fork, put, take } from 'redux-saga/effects'
 import * as actions from '../actions'
 import Config from '../models/Config'
@@ -49,17 +49,15 @@ function* configSyncSteram() {
 }
 
 function* timeLineconfigStream() {
-  while (true) {
-    const action = yield take(actions.TIMELINE_TYPE_CHANGE_NAME)
-    const config: Config = new Config(action.timelineType)
-    localStorage.setItem('config', config.toJSON())
-    const json = localStorage.getItem('config')
-    ipcRenderer.send('config/modify', json)
-  }
+  const action = yield take(actions.TIMELINE_TYPE_CHANGE_NAME)
+  const config: Config = new Config(action.timelineType)
+  localStorage.setItem('config', config.toJSON())
+  const json = localStorage.getItem('config')
+  ipcRenderer.send('config/modify', json)
 }
 
 export default function* rootSaga() {
   yield fork(commentStream)
-  yield fork(timeLineconfigStream)
+  yield takeEvery(actions.TIMELINE_TYPE_CHANGE_NAME, timeLineconfigStream)
   yield fork(configSyncSteram)
 }
