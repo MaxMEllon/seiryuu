@@ -55,6 +55,7 @@
   "dependencies": {
     "dotenv": "^4.0.0",
     "electron": "^1.6.11",
+    "muicss": "^0.9.16",
     "twitter": "^1.7.1"
   }
 }
