@@ -1,5 +1,6 @@
 import { Action } from 'redux'
 import { TimelineType } from '../models/Config'
+import Config from '../models/Config'
 
 export const RECIEVE_COMMENT_NAME = 'comment/recieve'
 export type RECIEVE_COMMENT_TYPE = typeof RECIEVE_COMMENT_NAME
@@ -64,8 +65,22 @@ export const changeTimeLineType = (timelineType: TimelineType): IChangeTimeLineT
   type: TIMELINE_TYPE_CHANGE_NAME,
 })
 
+export const CONFIG_SYNC_NAME = 'config/all/sync'
+export type CONFIG_SYNC_TYPE = typeof CONFIG_SYNC_NAME
+
+interface ISyncConifgAllAction extends Action {
+  config: Config
+  type: CONFIG_SYNC_TYPE
+}
+
+export const syncConfigAll = (config: Config): ISyncConifgAllAction => ({
+  config,
+  type: CONFIG_SYNC_NAME,
+})
+
 export type AllActions = IRecieveCommentAction
   | IDisposeCommentAction
   | IBootApplicationAction
   | IStopApplicationAction
   | IChangeTimeLineTypeChangeAction
+  | ISyncConifgAllAction

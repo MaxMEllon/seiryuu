@@ -1,8 +1,5 @@
-import {
-  CommentActions,
-  DISPOSE_COMMENT_NAME,
-  RECIEVE_COMMENT_NAME,
-} from '../actions'
+import { AllActions } from '../actions'
+import * as actions from '../actions'
 import CommentModel from '../models/Comment'
 import ConfigModel from '../models/Config'
 import List from '../models/List'
@@ -20,9 +17,9 @@ const initialState: IAppState = {
 let leatestCommentId = 0
 let currentViewingCommentCount = 0
 
-export default function reducer(state: IAppState = initialState, action: CommentActions): IAppState {
+export default function reducer(state: IAppState = initialState, action: AllActions): IAppState {
   switch (action.type) {
-    case RECIEVE_COMMENT_NAME: {
+    case actions.RECIEVE_COMMENT_NAME: {
       const newComment: CommentModel = new CommentModel({
         bottom: currentViewingCommentCount++,
         content: action.content,
@@ -35,10 +32,16 @@ export default function reducer(state: IAppState = initialState, action: Comment
         config: state.config,
       }
     }
-    case DISPOSE_COMMENT_NAME: {
+    case actions.DISPOSE_COMMENT_NAME: {
       return {
         comments: state.comments.remove(action.id),
         config: state.config,
+      }
+    }
+    case actions.CONFIG_SYNC_NAME: {
+      return {
+        comments: state.comments,
+        config: action.config,
       }
     }
     default:

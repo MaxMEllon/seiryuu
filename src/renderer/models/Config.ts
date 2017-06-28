@@ -8,6 +8,12 @@ export interface IConfigState {
 }
 
 export default class ConfigModel implements IConfigState {
+  static fromJSON(anyJson: string | null): ConfigModel | null {
+    if (anyJson === null || anyJson === undefined) return null
+    const obj: any = JSON.parse(anyJson as string)
+    return new ConfigModel(obj.timelineType)
+  }
+
   readonly _timelineType
 
   constructor(type: TimelineType = user) {
@@ -16,5 +22,11 @@ export default class ConfigModel implements IConfigState {
 
   get timelineType() {
     return this._timelineType
+  }
+
+  toJSON(): string {
+    return JSON.stringify({
+      timelineType: this._timelineType,
+    })
   }
 }

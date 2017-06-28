@@ -1,19 +1,10 @@
-import Col from 'muicss/lib/react/col'
-import Container from 'muicss/lib/react/container'
-import Form from 'muicss/lib/react/form'
-import Option from 'muicss/lib/react/option'
-import Row from 'muicss/lib/react/row'
-import Select from 'muicss/lib/react/select'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { AllActions, changeTimeLineType } from '../../actions'
-import Appbar from '../../components/Config/Appbar/index'
+import Appbar from '../../components/Config/Appbar'
+import Form from '../../components/Config/Form'
 import { TimelineType } from '../../models/Config'
 import ConfigModel from '../../models/Config'
-import {
-  hashtag as hashtagTL,
-  user as userTL,
-} from '../../models/Config'
 import { IAppState } from '../../reducers'
 import { IComponentProps } from '../../types'
 
@@ -32,18 +23,9 @@ class Config extends React.Component<Props, void> {
     return (
       <div>
         <Appbar />
-        <Container>
-          <Row>
-            <Col md="12">
-              <Form>
-                <Select defaultValue="option-1">
-                  <Option value={userTL} label="ユーザータイムライン" />
-                  <Option value={hashtagTL} label="ハッシュタグを指定" />
-                </Select>
-              </Form>
-            </Col>
-          </Row>
-        </Container>
+        <Form
+          changeTimeLineType={this.props.changeTimeLineType}
+        />
       </div>
     )
   }
