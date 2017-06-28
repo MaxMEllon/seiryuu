@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { disposeComment } from '../../actions'
+import { AllActions, disposeComment } from '../../actions'
 import Comment from '../../components/Comment'
 import CommentModel from '../../models/Comment'
 import List from '../../models/List'
@@ -51,7 +51,7 @@ class CommentList extends React.Component<Props, {}> {
 
 export default connect<ICommentProps, IDispatchActions, React.ComponentClass<Props>>(
   mapStateToProps,
-  (dispatch: any): IDispatchActions => ({
-    disposeById: (id: number): void => dispatch(disposeComment(id)),
+  (dispatch: Redux.Dispatch<AllActions>): IDispatchActions => ({
+    disposeById: (id: number): AllActions => dispatch(disposeComment(id)),
   }),
 )(CommentList)

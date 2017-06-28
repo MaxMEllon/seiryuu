@@ -1,4 +1,5 @@
 import { Action } from 'redux'
+import { TimelineType } from '../models/Config'
 
 export const RECIEVE_COMMENT_NAME = 'comment/recieve'
 export type RECIEVE_COMMENT_TYPE = typeof RECIEVE_COMMENT_NAME
@@ -50,7 +51,21 @@ export const stopApplication = (): IStopApplicationAction => ({
   type: APPLICATION_STOP_NAME,
 })
 
-export type CommentActions = IRecieveCommentAction
+export const TIMELINE_TYPE_CHANGE_NAME = 'config/timeline/change'
+export type TIMELINE_TYPE_CHANGE_TYPE = typeof TIMELINE_TYPE_CHANGE_NAME
+
+interface IChangeTimeLineTypeChangeAction extends Action {
+  type: TIMELINE_TYPE_CHANGE_TYPE,
+  timelineType: TimelineType,
+}
+
+export const changeTimeLineType = (timelineType: TimelineType): IChangeTimeLineTypeChangeAction => ({
+  timelineType,
+  type: TIMELINE_TYPE_CHANGE_NAME,
+})
+
+export type AllActions = IRecieveCommentAction
   | IDisposeCommentAction
   | IBootApplicationAction
   | IStopApplicationAction
+  | IChangeTimeLineTypeChangeAction
