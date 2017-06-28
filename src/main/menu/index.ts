@@ -3,11 +3,13 @@ import * as electron from 'electron'
 const BrowserWindow: typeof Electron.BrowserWindow = electron.BrowserWindow
 const Menu: typeof Electron.Menu = electron.Menu
 
+const env = process.env.NODE_ENV === 'production'
+
 const handleOpenConfigWindow = () => {
   const configWindow: any = new BrowserWindow({
-    frame: false,
+    frame: env,
     height: 600,
-    resizable: false,
+    resizable: env,
     width: 400,
   })
   configWindow.loadURL('http://localhost:3000/config')
