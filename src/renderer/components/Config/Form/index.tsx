@@ -9,13 +9,18 @@ import {
   hashtag as hashtagTL,
   user as userTL,
 } from '../../../models/Config'
-import { TimelineType } from '../../../models/Config'
+// import { TimelineType } from '../../../models/Config'
+// import ConfigModel from '../../../models/Config'
+// import { IComponentProps } from '../../../types'
 
-interface IProps {
-  changeTimeLineType: (timelineType: TimelineType) => void
-}
+// interface IProps {
+//   conifg: ConfigModel
+//   changeTimeLineType: (timelineType: TimelineType) => any
+// }
 
-export default class FormComponent extends React.Component<IProps, {}> {
+// type Props = IProps & IComponentProps
+
+export default class FormComponent extends React.Component<any, any> {
   constructor(props) {
     super(props)
     this.onChange = this.onChange.bind(this)
@@ -31,7 +36,7 @@ export default class FormComponent extends React.Component<IProps, {}> {
         <Row>
           <Col md="12">
             <Form>
-              <Select defaultValue="option-1" onChange={this.onChange}>
+              <Select defaultValue={this.props.config.timelineType} onChange={this.onChange}>
                 <Option value={userTL} label="ユーザータイムライン" />
                 <Option value={hashtagTL} label="ハッシュタグを指定" />
               </Select>

@@ -18,6 +18,14 @@ interface IConfigProps {
 
 type Props = IConfigProps & IComponentProps & IDispatchActions
 
+type mapStateToPropsType = (state: IAppState) => ({
+  config: ConfigModel,
+})
+
+const mapStateToProps: mapStateToPropsType = (state: IAppState) => ({
+  config: state.config,
+})
+
 class Config extends React.Component<Props, void> {
   render() {
     return (
@@ -25,6 +33,7 @@ class Config extends React.Component<Props, void> {
         <Appbar />
         <Form
           changeTimeLineType={this.props.changeTimeLineType}
+          config={this.props.config}
         />
       </div>
     )
@@ -32,9 +41,7 @@ class Config extends React.Component<Props, void> {
 }
 
 export default connect<IConfigProps, IDispatchActions, React.ComponentClass<any>>(
-  (state: IAppState): IConfigProps => ({
-    config: state.config,
-  }),
+  mapStateToProps,
   (dispatch: Redux.Dispatch<AllActions>): IDispatchActions => ({
     changeTimeLineType: (timelineType: TimelineType) => (
       dispatch(changeTimeLineType(timelineType))
