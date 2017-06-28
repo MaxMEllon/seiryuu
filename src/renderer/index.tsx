@@ -1,21 +1,27 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import App from './containers/App'
-import Config from './containers/Config'
+import Routes from './routes'
 import createStore from './stores/store'
 
 const store = createStore()
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <Switch>
-        <Route exact={true} path="/" component={App} />
-        <Route path="/config" component={Config} />
-      </Switch>
-    </Router>
-  </Provider>,
-  document.getElementById('main'),
-)
+const el = document.getElementById('main')
+
+// tslint:disable-next-line:variable-name
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={store}>
+        <Component />
+      </Provider>
+    </AppContainer>,
+    el,
+  )
+}
+
+render(Routes)
+
+declare var module: any
+if (module.hot) module.hot.accept('./routes', () => render(Routes))
