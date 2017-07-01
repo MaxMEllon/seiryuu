@@ -54,6 +54,7 @@ function* timeLineconfigStream() {
   localStorage.setItem('config', config.toJSON())
   const json = localStorage.getItem('config')
   ipcRenderer.send('config/modify', json)
+  yield put(actions.syncConfigAll(config))
 }
 
 export default function* rootSaga() {
