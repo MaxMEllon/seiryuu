@@ -12,14 +12,29 @@ const client = new Twitter({
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET_KEY,
 })
 
-const stream = client.stream('user')
+export default class TwitterSubscriber {
+  userStream: any
+  globalStream: any
 
-export function deliverToRenderer(emitter: any): void {
-  stream.on('data', (e: object) => {
-    emitter.send('tweet', JSON.stringify(e))
-  })
-}
+  constructor() {
+    this.userStream = client.stream('user')
+  }
 
-export function closeSocket(): void {
-  stream.destroy()
+  subscribeUserStream(socket: any) {
+    this.userStream.on('data', (e: object) => {
+      socket.send('tweet', JSON.stringify(e))
+    })
+  }
+
+  subscribeHashTag(socket: any, tag: string) {
+    if (!(this.globalStream === null || this.globalStream === undefined)) this.globalStream.destroy()
+    this.globalStream = client.stream('statuses/filter', {track: tag})
+    this.globalStream.on('data', (e: object) => {
+      socket.send('tweet', JSON.stringify(e))
+    })
+  }
+
+  disconnectUserStream(): void {
+    this.userStream.destroy()
+  }
 }

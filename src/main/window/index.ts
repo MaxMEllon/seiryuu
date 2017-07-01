@@ -1,44 +1,50 @@
 import { ipcMain } from 'electron'
 import menuInitalizer from '../menu'
-import * as twitter from '../twitter'
+import Twitter from '../twitter'
 
 type WindowCreator = new (opt?: Electron.BrowserWindowConstructorOptions) => (
   Electron.BrowserWindow
 )
+
 const env = process.env.NODE_ENV === 'production'
 
-const ipcSubscrbe = (mainWindow: Electron.BrowserWindow) => {
-  ipcMain.on('boot', (event) => {
-    mainWindow.on('close', () => {
-      event.sender.send('quit', 'ping')
-      twitter.closeSocket()
+export default class MainWindow {
+  win: any
+  twitter: Twitter
+
+  constructor(size: Electron.Size, windowCreator: WindowCreator) {
+    this.win = new windowCreator({
+      alwaysOnTop: env,
+      frame: env,
+      height: size.height,
+      resizable: env,
+      show: true,
+      transparent: true,
+      width: size.width,
     })
-    twitter.deliverToRenderer(event.sender)
-  })
+    if (env) this.win.setIgnoreMouseEvents(true)
+    if (!env) this.win.openDevTools()
+    this.win.loadURL('http://localhost:3000')
+    this.win.on('closed', () => (this.win = null))
+    this.twitter = new Twitter()
+    menuInitalizer()
+  }
 
-  ipcMain.on('config/modify', (event, args) => {
-    mainWindow.webContents.send('config/update', args)
-  })
-}
+  maximize() {
+    this.win.maximize()
+  }
 
-export default function windowInitalizer(size: Electron.Size, windowCreator: WindowCreator) {
-  let mainWindow: any = new windowCreator({
-    alwaysOnTop: env,
-    frame: env,
-    height: size.height,
-    resizable: env,
-    show: true,
-    transparent: true,
-    width: size.width,
-  })
+  subscribe() {
+    ipcMain.on('boot', (event) => {
+      this.win.on('close', () => {
+        event.sender.send('quit', 'ping')
+        this.twitter.disconnectUserStream()
+      })
+      this.twitter.subscribeUserStream(event.sender)
+    })
 
-  mainWindow.maximize()
-  if (env) mainWindow.setIgnoreMouseEvents(true)
-  mainWindow.loadURL('http://localhost:3000')
-  if (process.env.NODE_ENV !== 'production') mainWindow.openDevTools()
-  mainWindow.on('closed', () => (mainWindow = null))
-
-  menuInitalizer()
-
-  ipcSubscrbe(mainWindow)
+    ipcMain.on('config/modify', (event, args) => {
+      this.win.webContents.send('config/update', args)
+    })
+  }
 }
